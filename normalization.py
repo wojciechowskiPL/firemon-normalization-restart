@@ -11,31 +11,31 @@ def requestor(result):
         'Accept': 'application/json',
     }
 
-    host = result.Host
-    start = result.start
-    end = result.end
-    login = result.login
-    password = result.password
+    HOST = result.Host
+    START = result.start
+    END = result.end
+    LOGIN = result.login
+    PASSWORD = result.password
 
     for i in range(start, end):
         # Sample CURL
-        ## curl curl -k -X PUT -u 'firemon:firemon' S--header 'Content-Type: application/json' --header 'Accept: application/json' 'https://172.31.137.173/securitymanager/api/rev/1/nd/restart'
+        ## curl curl -k -X PUT -u 'firemon:firemon' S--header 'Content-Type: application/json' --header 'Accept: application/json' 'https://IP.ADDRESS/securitymanager/api/rev/1/nd/restart'
         try:
-            requests.put('https://{}/securitymanager/api/rev/{}/nd/restart'.format(host, i),
+            requests.put('https://{}/securitymanager/api/rev/{}/nd/restart'.format(HOST, i),
                                 headers=headers,
                                 verify=False,
-                                auth=(login, password))
+                                auth=(LOGIN, PASSWORD))
         except RequestException as e:
             print('Connection error: {}'.format(e))
             sys.exit(1)
 
     # Sample CURL
-    ## curl curl -k -X PUT -u 'firemon:firemon' --header 'Content-Type: application/json' --header 'Accept: application/json' 'https://172.31.137.173/securitymanager/api/rev/interrupted/requeue'
+    ## curl curl -k -X PUT -u 'firemon:firemon' --header 'Content-Type: application/json' --header 'Accept: application/json' 'https://IP.ADDRESS/securitymanager/api/rev/interrupted/requeue'
     try:
         requests.put('https://{}/securitymanager/api/rev/interrupted/requeue'.format(host),
                             headers=headers,
                             verify=False,
-                            auth=(login, password))
+                            auth=(LOGIN, PASSWORD))
     except RequestException as e:
         print('Connection error: {}'.format(e))
         sys.exit(1)
